@@ -178,6 +178,7 @@ if __name__ == '__main__':
     else:
         cmd = args[0]
 
+    # SD: Default behaviour if no arguments provided    
     if cmd == 'gui':
         gui_name = config.get('gui', 'classic')
         if gui_name in ['lite', 'classic']:
@@ -191,6 +192,7 @@ if __name__ == '__main__':
 
         # network interface
         if not options.offline:
+            # SD: spawn a new thread. Network a child of the Thread class
             network = Network(config)
             network.start()
         else:
