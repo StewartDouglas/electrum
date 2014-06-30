@@ -53,13 +53,16 @@ from version import *
 class WalletStorage:
 
     def __init__(self, config):
+        #print "Creating wallet storage"
         self.lock = threading.Lock()
         self.config = config
         self.data = {}
         self.file_exists = False
         self.path = self.init_path(config)
+        # self.path is a link to the default wallet
         print_error( "wallet path", self.path )
         if self.path:
+            # Will populate self.data set self.file_exists to True
             self.read(self.path)
 
 

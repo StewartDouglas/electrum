@@ -430,7 +430,7 @@ class Network(threading.Thread):
 
 
 if __name__ == "__main__":
-    network = NetworkProxy({})
+    network = NetworkProxy({}) # NetworkProxy defined in daemon.py
     network.start()
     print network.get_servers()
 

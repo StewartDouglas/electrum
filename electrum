@@ -184,6 +184,7 @@ if __name__ == '__main__':
         if gui_name in ['lite', 'classic']:
             gui_name = 'qt'
         try:
+            # we only know the name of the module at run time
             gui = __import__('electrum_gui.' + gui_name, fromlist=['electrum_gui'])
         except ImportError:
             traceback.print_exc(file=sys.stdout)
@@ -197,6 +198,10 @@ if __name__ == '__main__':
             network.start()
         else:
             network = None
+
+        # where 'import' looks    
+        # for files in sys.path:
+        #    print files
 
         gui = gui.ElectrumGui(config, network)
         gui.main(url)
@@ -216,7 +221,6 @@ if __name__ == '__main__':
 
     # instanciate wallet for command-line
     storage = WalletStorage(config)
-
 
     if cmd.name in ['create', 'restore']:
         if storage.file_exists:
